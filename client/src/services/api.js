@@ -1,5 +1,6 @@
 // src/services/api.js
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -68,10 +69,10 @@ export const loginUser = async (email, password, login, navigate) => {
       { email, password }
     );
     login(); // update context/auth state
-    alert("Login successful!");
+    toast.success("Login successful!");
     navigate("/profile/me");
   } catch (err) {
-    alert(err.response?.data?.message || "Login failed");
+    toast.error(err.response?.data?.message || "Login failed");
     throw err;
   }
 };

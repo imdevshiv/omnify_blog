@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { updateBlog } from "../services/api";
+import { toast } from "react-toastify";
 
 const EditBlogModal = ({ blog, onClose, onUpdate }) => {
   const [title, setTitle] = useState(blog.title);
@@ -14,7 +15,7 @@ const EditBlogModal = ({ blog, onClose, onUpdate }) => {
       onUpdate(updated);
     } catch (error)
      {
-      alert(error,"Failed to update blog");
+      toast.error(error,"Failed to update blog");
     } finally {
       setLoading(false);
     }

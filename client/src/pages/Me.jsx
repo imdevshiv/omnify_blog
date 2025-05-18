@@ -5,6 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import EditBlogModal from "../modal/EditBlogModal";
 import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Me = () => {
   const [user, setUser] = useState(null);
@@ -53,7 +54,7 @@ const Me = () => {
       navigate("/");
     } catch (error) {
       console.error("Error deleting blog:", error);
-      alert("Failed to delete the blog. Please try again.");
+      toast.error("Failed to delete the blog. Please try again.");
     }
   };
 

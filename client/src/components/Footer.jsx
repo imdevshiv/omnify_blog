@@ -4,16 +4,19 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="h-16 flex items-center justify-center text-gray-500 border-t mt-10 text-center px-2">
-      All rights reserved © {year} Omnify. | Made with ❤️ by{" "}
-      <a
-        href="https://github.com/imdevshiv"
-        className="text-blue-500 hover:underline ml-1"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Shiv
-      </a>
+    <footer className="w-full py-4 px-4 border-t mt-10 text-center text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+      <span>All rights reserved © {year} Omnify.</span>
+      <span>
+        Made with ❤️ by{" "}
+        <a
+          href="https://github.com/imdevshiv"
+          className="text-blue-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Shiv
+        </a>
+      </span>
     </footer>
   );
 };

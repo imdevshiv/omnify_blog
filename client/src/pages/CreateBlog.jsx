@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import api from "../services/api"; // 👈 import the configured Axios instance
+import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await api.post("/blog", { title, content });
-      alert("Blog posted!");
+      toast.success("Blog posted!");
       navigate("/");
       setTitle("");
       setContent("");
     } catch (err) {
       console.error(err);
-      alert("Failed to post blog.");
+      toast.error("Failed to post blog.");
     }
   };
 

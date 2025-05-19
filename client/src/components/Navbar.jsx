@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white relative">
       {/* Logo */}
       <div
-        className="text-2xl font-bold text-green-600 cursor-pointer select-none"
+        className="flex items-center gap-2 cursor-pointer select-none"
         onClick={() => navigate("/")}
       >
         <img

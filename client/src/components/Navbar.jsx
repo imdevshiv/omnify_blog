@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white relative">
       {/* Logo */}
       <div
-        className="flex items-center gap-2 cursor-pointer select-none"
+        className="flex items-center cursor-pointer select-none"
         onClick={() => navigate("/")}
       >
         <img
@@ -29,7 +29,7 @@ const Navbar = () => {
           alt="Omnify Logo"
           className="h-8 w-auto"
         />
-        <span className="text-xl font-semibold text-green-600">blog</span>
+        <span className="text-2xl  font-bold text-[#25D366]">blog</span>
       </div>
 
       {/* Mobile Menu Toggle */}

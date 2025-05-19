@@ -23,7 +23,7 @@ A full-stack blogging platform built with a Java Spring Boot backend and a React
 * **Deployment**:
 
   * Frontend: [Vercel]
-  * Backend: [ Render]((via Docker))
+  * Backend: [ GCP]((via Docker))
 
 ---
 

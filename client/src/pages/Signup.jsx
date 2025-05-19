@@ -58,6 +58,7 @@ const Signup = () => {
   return (
     <div className="p-8 max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+
       {globalError && (
         <div className="mb-4 p-2 bg-red-200 text-red-700">{globalError}</div>
       )}
@@ -106,6 +107,19 @@ const Signup = () => {
       >
         Create Account
       </button>
+
+      {/* Already have an account link */}
+      <div className="mt-4 text-center">
+        <p className="text-sm">
+          Already have an account?{" "}
+          <button
+            onClick={() => navigate("/login")}
+            className="text-blue-600 hover:underline"
+          >
+            Login
+          </button>
+        </p>
+      </div>
     </div>
   );
 };

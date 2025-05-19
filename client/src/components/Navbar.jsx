@@ -5,12 +5,13 @@ import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [authButtonClicked, setAuthButtonClicked] = useState(false); // NEW STATE
   const navigate = useNavigate();
   const { isLoggedIn, logout, loading } = useAuth();
 
-  const authContainerClass = "hidden md:flex space-x-4 w-full max-w-xs justify-end min-w-[250px]";
+  const authContainerClass =
+    "hidden md:flex space-x-4 w-full max-w-xs justify-end min-w-[250px]";
 
-  // Show loading placeholder while checking auth
   if (loading) {
     return (
       <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white relative">
@@ -37,12 +38,14 @@ const Navbar = () => {
         omnify.blog
       </div>
 
+      {/* Mobile Menu Toggle */}
       <div className="md:hidden">
         <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
+      {/* Desktop Auth Buttons */}
       <div className={authContainerClass}>
         {isLoggedIn ? (
           <>
@@ -58,28 +61,40 @@ const Navbar = () => {
             >
               Profile
             </button>
-            <button onClick={logout} className="text-red-600 hover:underline whitespace-nowrap">
+            <button
+              onClick={logout}
+              className="text-red-600 hover:underline whitespace-nowrap"
+            >
               Logout
             </button>
           </>
         ) : (
-          <>
-            <button
-              onClick={() => navigate("/login")}
-              className="text-gray-700 px-4 py-2 rounded shadow hover:bg-black hover:text-white whitespace-nowrap"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => navigate("/signup")}
-              className="bg-black text-white px-4 py-2 rounded shadow whitespace-nowrap"
-            >
-              Sign up for Free
-            </button>
-          </>
+          !authButtonClicked && (
+            <>
+              <button
+                onClick={() => {
+                  setAuthButtonClicked(true);
+                  navigate("/login");
+                }}
+                className="text-gray-700 px-4 py-2 rounded shadow hover:bg-black hover:text-white whitespace-nowrap"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => {
+                  setAuthButtonClicked(true);
+                  navigate("/signup");
+                }}
+                className="bg-black text-white px-4 py-2 rounded shadow whitespace-nowrap"
+              >
+                Sign up for Free
+              </button>
+            </>
+          )
         )}
       </div>
 
+      {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="absolute top-16 right-6 bg-white shadow-md rounded-md p-4 flex flex-col space-y-2 md:hidden">
           {isLoggedIn ? (
@@ -110,24 +125,28 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <>
-              <button
-                onClick={() => {
-                  navigate("/login");
-                  setIsOpen(false);
-                }}
-              >
-                Login
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/signup");
-                  setIsOpen(false);
-                }}
-              >
-                Sign up
-              </button>
-            </>
+            !authButtonClicked && (
+              <>
+                <button
+                  onClick={() => {
+                    setAuthButtonClicked(true);
+                    navigate("/login");
+                    setIsOpen(false);
+                  }}
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => {
+                    setAuthButtonClicked(true);
+                    navigate("/signup");
+                    setIsOpen(false);
+                  }}
+                >
+                  Sign up
+                </button>
+              </>
+            )
           )}
         </div>
       )}

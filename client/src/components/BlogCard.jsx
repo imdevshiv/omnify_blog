@@ -34,7 +34,7 @@ const BlogCard = ({ blog, isOwnerView = false, onEdit, onDelete }) => {
       <div className="flex flex-col flex-grow">
         <Link to={`/blogs/${blog.id}`} className="hover:text-indigo-600 flex flex-col flex-grow">
           {/* Title */}
-          <h3 className="text-xl font-bold mb-2 text-gray-800">
+          <h3 className="hover:text-indigo-600 text-xl font-bold mb-2 text-gray-800">
             {blog.title}
           </h3>
 

@@ -92,6 +92,19 @@ const Login = () => {
       >
         {loading ? "Logging in..." : "Login"}
       </button>
+
+      {/* Sign up link */}
+      <div className="mt-4 text-center">
+        <p className="text-sm">
+          Don't have an account?{" "}
+          <button
+            onClick={() => navigate("/signup")}
+            className="text-blue-600 hover:underline"
+          >
+            Sign up
+          </button>
+        </p>
+      </div>
     </div>
   );
 };

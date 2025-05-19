@@ -1,5 +1,8 @@
 export const formatBlogDate = (isoString) => {
-  const postDate = new Date(isoString);
+  // Append 'Z' if missing to treat as UTC
+  const fixedIsoString = isoString.endsWith('Z') ? isoString : isoString + 'Z';
+
+  const postDate = new Date(fixedIsoString);
   const now = new Date();
   const diffInMs = now - postDate;
   const diffInHours = diffInMs / (1000 * 60 * 60);

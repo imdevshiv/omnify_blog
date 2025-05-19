@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Menu, X, Pencil, User, LogOut } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,20 +49,23 @@ const Navbar = () => {
             <>
               <button
                 onClick={() => navigate("/profile/createBlog")}
-                className="text-gray-700 hover:underline whitespace-nowrap"
+                className="flex items-center gap-1 text-gray-700 hover:text-green-600 font-medium"
               >
+                <Pencil size={18} />
                 Create Blog
               </button>
               <button
                 onClick={() => navigate("/profile/me")}
-                className="text-gray-700 hover:underline whitespace-nowrap"
+                className="flex items-center gap-1 text-gray-700 hover:text-green-600 font-medium"
               >
+                <User size={18} />
                 Profile
               </button>
               <button
                 onClick={logout}
-                className="text-red-600 hover:underline whitespace-nowrap"
+                className="flex items-center gap-1 text-red-600 hover:text-red-700 font-medium"
               >
+                <LogOut size={18} />
                 Logout
               </button>
             </>
@@ -93,20 +96,22 @@ const Navbar = () => {
         <div
           role="menu"
           aria-label="Mobile navigation"
-          className="absolute top-16 right-6 bg-white shadow-md rounded-md p-4 flex flex-col space-y-2 md:hidden"
+          className="absolute top-16 right-6 bg-white shadow-md rounded-md p-4 flex flex-col space-y-2 md:hidden z-10"
         >
           {isLoggedIn ? (
             <>
               <button
                 onClick={() => onNavigate("/profile/createBlog")}
-                className="text-gray-700 hover:underline"
+                className="flex items-center gap-2 text-gray-700 hover:text-green-600"
               >
+                <Pencil size={18} />
                 Create Blog
               </button>
               <button
                 onClick={() => onNavigate("/profile/me")}
-                className="text-gray-700 hover:underline"
+                className="flex items-center gap-2 text-gray-700 hover:text-green-600"
               >
+                <User size={18} />
                 Profile
               </button>
               <button
@@ -114,8 +119,9 @@ const Navbar = () => {
                   logout();
                   setIsOpen(false);
                 }}
-                className="text-red-600 hover:underline"
+                className="flex items-center gap-2 text-red-600 hover:text-red-700"
               >
+                <LogOut size={18} />
                 Logout
               </button>
             </>

@@ -29,16 +29,18 @@ const Home = () => {
     fetchBlogs();
   }, [currentPage]);
 
-  if (loading) return <LoadingSpinner />;
-
   return (
-    <main className="flex flex-col flex-grow px-4 pt-6 pb-6  w-full max-w-6xl mx-auto">
-      <div className="flex flex-wrap gap-8 justify-center">
-        {blogs.map((blog) => (
-          <div key={blog.id} className="w-full sm:w-[90%] md:w-[70%] lg:w-[30%]">
-            <BlogCard blog={blog} />
-          </div>
-        ))}
+    <main className="flex flex-col flex-grow px-4 pt-6 pb-6 w-full max-w-6xl mx-auto">
+      <div className="flex flex-wrap gap-8 justify-center min-h-[300px]">
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          blogs.map((blog) => (
+            <div key={blog.id} className="w-full sm:w-[90%] md:w-[70%] lg:w-[30%]">
+              <BlogCard blog={blog} />
+            </div>
+          ))
+        )}
       </div>
 
       {totalPages > 1 && (

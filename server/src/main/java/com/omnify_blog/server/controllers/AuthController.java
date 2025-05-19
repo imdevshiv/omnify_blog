@@ -80,11 +80,15 @@ public class AuthController {
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
-        Cookie cookie = new Cookie("jwt", "");
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        cookie.setMaxAge(0); // expires immediately
-        response.addCookie(cookie);
+        ResponseCookie cookie = ResponseCookie.from("jwt", "")
+                .httpOnly(true)
+                .secure(true)            // must match original cookie
+                .sameSite("None")        // must match original cookie
+                .path("/")               // must match original cookie
+                .maxAge(0)               // expire immediately
+                .build();
+
+        response.addHeader("Set-Cookie", cookie.toString());
 
         return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
     }

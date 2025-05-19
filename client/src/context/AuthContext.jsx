@@ -9,14 +9,13 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const res = await getMyProfile(); // ✅ added await
+      const res = await getMyProfile();
       if (res) {
         setIsLoggedIn(true);
       }
     } catch (err) {
       setIsLoggedIn(false);
       console.log(err);
-      
     } finally {
       setLoading(false);
     }
@@ -53,7 +52,12 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsLoggedIn(false);
     logoutUser();
-    localStorage.setItem("logout", Date.now()); // ✅ notify other tabs
+    localStorage.setItem("logout", Date.now());
+
+    // Segment: reset anonymous ID and clear user state
+    if (window.analytics && typeof window.analytics.reset === "function") {
+      window.analytics.reset();
+    }
   };
 
   return (

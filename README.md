@@ -9,9 +9,7 @@ A full-stack blogging platform built with a Java Spring Boot backend and a React
 
 ---
 
-Got it! Based on your project, here's a more accurate and updated `Tech Stack` section for your `README.md`:
 
----
 
 ## 🛠 Tech Stack
 

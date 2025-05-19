@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { loginUser } from "../services/api";
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +41,8 @@ const Login = () => {
 
     setLoading(true);
     try {
-      await loginUser(email, password, login, navigate);
+      await loginUser(email, password, login);
+      navigate("/profile/me");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
@@ -64,19 +64,25 @@ const Login = () => {
           type="email"
           autoComplete="username"
         />
-        {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
+        {emailError && (
+          <p className="text-red-500 text-sm mt-1">{emailError}</p>
+        )}
       </div>
 
       <div className="mb-4">
         <input
-          className={`w-full p-2 border ${passwordError ? "border-red-500" : ""}`}
+          className={`w-full p-2 border ${
+            passwordError ? "border-red-500" : ""
+          }`}
           placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
-        {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
+        {passwordError && (
+          <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+        )}
       </div>
 
       <button

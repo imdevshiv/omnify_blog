@@ -7,7 +7,6 @@
     <list default="true" id="1cc7f3ac-8c2a-4fc2-a975-f4e307c89fd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/omnify_blog/server/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/omnify_blog/server/services/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

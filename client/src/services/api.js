@@ -16,10 +16,10 @@ export const signup = async ({ name, email, password }) => {
 };
 
 // Login
-export const login = async ({ email, password }) => {
-  const response = await api.post("/auth/login", { email, password });
-  return response.data;
-};
+// export const login = async ({ email, password }) => {
+//   const response = await api.post("/auth/login", { email, password });
+//   return response.data;
+// };
 
 // Fetch current user profile
 export const getMyProfile = async () => {
@@ -62,15 +62,15 @@ export const getBlog = async (page = 0, size = 3) => {
 };
 
 
-export const loginUser = async (email, password, login, navigate) => {
+export const loginUser = async (email, password, login) => {
   try {
     await api.post(
       "/auth/login",
       { email, password }
     );
-    login(); // update context/auth state
+    login(true); // update context/auth state
     toast.success("Login successful!");
-    navigate("/profile/me");
+  
   } catch (err) {
     toast.error(err.response?.data?.message || "Login failed");
     throw err;

@@ -9,9 +9,7 @@ A full-stack blogging platform built with a Java Spring Boot backend and a React
 
 ---
 
-Got it! Based on your project, here's a more accurate and updated `Tech Stack` section for your `README.md`:
 
----
 
 ## 🛠 Tech Stack
 
@@ -114,21 +112,21 @@ omnify_blog/
 | POST   | `/api/auth/login`  | Login user              |
 
 
-*Note: Ensure proper authentication headers are included where necessary.*
+*Note: Please ensure proper authentication headers are included where necessary.*
 
 ---
 
 ## 🧪 Testing
 
 * **Frontend**: Utilize tools like Jest and React Testing Library.
-* **Backend**: Employ JUnit and Mockito for unit and integration tests.
+* **Backend**: Use JUnit and Mockito for unit and integration tests.
 
 ---
 
 ## 📌 Deployment
 
 * **Frontend**: Deployed on Vercel at [omnify-blog.vercel.app](https://omnify-blog.vercel.app)
-* **Backend**: \[Specify your backend deployment details]
+* **Backend**: \[Render]
 
 ---
 

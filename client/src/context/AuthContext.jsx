@@ -54,10 +54,16 @@ export const AuthProvider = ({ children }) => {
     logoutUser();
     localStorage.setItem("logout", Date.now());
 
-    // Segment: reset anonymous ID and clear user state
+    // Segment: reset analytics state
     if (window.analytics && typeof window.analytics.reset === "function") {
       window.analytics.reset();
     }
+
+    // Manually remove ajs_anonymous_id from localStorage (just in case)
+    localStorage.removeItem("ajs_anonymous_id");
+
+    // Remove ajs_anonymous_id cookie
+    document.cookie = "ajs_anonymous_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   };
 
   return (

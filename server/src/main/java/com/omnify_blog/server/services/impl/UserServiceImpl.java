@@ -1,6 +1,5 @@
 package com.omnify_blog.server.services.impl;
 
-
 import com.omnify_blog.server.dto.RegisterRequest;
 import com.omnify_blog.server.dto.UserDto;
 import com.omnify_blog.server.model.User;
@@ -9,7 +8,6 @@ import com.omnify_blog.server.services.UserService;
 import com.omnify_blog.server.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

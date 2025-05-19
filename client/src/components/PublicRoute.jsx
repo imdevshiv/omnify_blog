@@ -6,7 +6,7 @@ const PublicRoute = ({ children }) => {
   const { isLoggedIn, loading } = useAuth();
 
   if (loading) {
-    return <LoadingSpinner/>; // show spinner or loading UI
+    return <LoadingSpinner/>; 
   }
 
   return isLoggedIn ? <Navigate to="/" replace /> : children;

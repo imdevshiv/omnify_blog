@@ -126,7 +126,7 @@ omnify_blog/
 ## 📌 Deployment
 
 * **Frontend**: Deployed on Vercel at [omnify-blog.vercel.app](https://omnify-blog.vercel.app)
-* **Backend**: \[Render]
+* **Backend**: Deployed on Google Cloud Platform [GCP](https://cloud.google.com/?hl=en)
 
 ---
 

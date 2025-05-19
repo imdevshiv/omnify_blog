@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-6 py-4 shadow-md bg-white relative">
       <div
-        className="text-2xl font-bold text-green-600 cursor-pointer"
+        className="text-2xl font-bold text-green-600 cursor-pointer select-none"
         onClick={() => navigate("/")}
       >
         omnify.blog

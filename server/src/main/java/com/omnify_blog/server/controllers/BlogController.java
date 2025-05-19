@@ -3,18 +3,19 @@ package com.omnify_blog.server.controllers;
 import com.omnify_blog.server.dto.BlogDto;
 import com.omnify_blog.server.dto.PageDto;
 import com.omnify_blog.server.services.BlogService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/blog")
@@ -42,8 +43,8 @@ public class BlogController {
     public ResponseEntity<PageDto> getBlogs(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
-    @RequestParam(defaultValue = "createdDate,desc") String sort) {
-        PageDto pageDto = blogService.getBlogs(page, size,sort);
+            @RequestParam(defaultValue = "createdDate,desc") String sort) {
+        PageDto pageDto = blogService.getBlogs(page, size, sort);
         return new ResponseEntity<>(pageDto, HttpStatus.OK);
     }
 
@@ -67,14 +68,15 @@ public class BlogController {
 
     // Delete blog by id (auth required)
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBlog(
+    public ResponseEntity<Map<String, String>> deleteBlog(
             @PathVariable Long id,
             @AuthenticationPrincipal UserDetails userDetails) {
         String authorEmail = userDetails.getUsername();
         blogService.deleteBlog(id, authorEmail);
-        return new ResponseEntity<>("Blog deleted successfully", HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(Map.of("message", "Blog deleted successfully"));
     }
 
+    // Get blogs by current user using token (auth required)
     @GetMapping("/my-blogs")
     public ResponseEntity<?> getMyBlogs(
             @CookieValue(name = "jwt", required = false) String token,
@@ -93,12 +95,10 @@ public class BlogController {
         }
     }
 
-
-
-    // Delete all blogs - maybe admin only, keep if needed
+    // Delete all blogs - admin usage suggested
     @DeleteMapping("/admin/deleteAll")
-    public ResponseEntity<String> deleteAllBlogs() {
+    public ResponseEntity<Map<String, String>> deleteAllBlogs() {
         blogService.deleteAll();
-        return ResponseEntity.ok("All blogs deleted by admin");
+        return ResponseEntity.ok(Map.of("message", "All blogs deleted by admin"));
     }
 }

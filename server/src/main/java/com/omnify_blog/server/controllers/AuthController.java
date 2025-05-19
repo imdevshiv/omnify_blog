@@ -4,23 +4,21 @@ import com.omnify_blog.server.dto.AuthRequest;
 import com.omnify_blog.server.dto.AuthResponse;
 import com.omnify_blog.server.dto.RegisterRequest;
 import com.omnify_blog.server.dto.UserDto;
-
 import com.omnify_blog.server.services.UserService;
-
 import com.omnify_blog.server.util.CookieUtil;
 import com.omnify_blog.server.util.JwtTokenUtil;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -28,14 +26,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
-    @Autowired
-    UserService userService;
-    @Autowired
-    JwtTokenUtil jwtUtil;
-    @Autowired
-    AuthenticationManager authManager;
-    @Autowired
-    UserDetailsService userDetails;
+
+    private final UserService userService;
+    private final JwtTokenUtil jwtUtil;
+    private final AuthenticationManager authManager;
+
+    // Constructor injection
+    public AuthController(UserService userService,
+                          JwtTokenUtil jwtUtil,
+                          AuthenticationManager authManager) {
+        this.userService = userService;
+        this.jwtUtil = jwtUtil;
+        this.authManager = authManager;
+    }
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
@@ -59,7 +62,8 @@ public class AuthController {
 
             return ResponseEntity.ok(new AuthResponse(null, userDTO));
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Invalid credentials"));
         }
     }
 
@@ -69,11 +73,10 @@ public class AuthController {
             UserDto userDTO = userService.getCurrentUserFromToken(token);
             return ResponseEntity.ok(userDTO);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", e.getMessage()));
         }
     }
-
-
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
@@ -85,5 +88,4 @@ public class AuthController {
 
         return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
     }
-
 }

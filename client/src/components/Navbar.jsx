@@ -24,7 +24,12 @@ const Navbar = () => {
         className="text-2xl font-bold text-green-600 cursor-pointer select-none"
         onClick={() => navigate("/")}
       >
-        omnify.blog
+        <img
+          src="https://cdn.prod.website-files.com/578142394a3a560c48f0927d/639c46744d03cc0429ce9a2d_Omnify%20Logo%20Dark-p-500.webp"
+          alt="Omnify Logo"
+          className="h-8 w-auto"
+        />
+        <span className="text-xl font-semibold text-green-600">blog</span>
       </div>
 
       {/* Mobile Menu Toggle */}
